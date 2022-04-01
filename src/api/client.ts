@@ -26,7 +26,7 @@ class Client {
   async getWeatherByZipCode(zipCode: number) {
     const res = await axios.get(
       `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${key}`
-    );
+    )
     return res.data as WeatherEntry;
   }
 }
