@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import Weather from "./Weather";
 
 // const EXAMPLE_ZIP_CODE = 37203;
-/* const EXAMPLE_WEATHER_RESPONSE = 
+/* const EXAMPLE_WEATHER_RESPONSE =
 {
   "base": "stations",
   "clouds": {
