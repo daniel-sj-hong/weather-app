@@ -8,9 +8,7 @@ import { WeatherEntry } from "../api/client";
 export default function HomePage() {
   const [zipCode, setZipCode] = useState(0)
   const [weather, setWeather] = useState({})
-  // const getWeather = () => {
 
-  // }
 
   useEffect(() => {
     if (zipCode) {
@@ -23,16 +21,22 @@ export default function HomePage() {
 
   const updateZip = (zip: number) => {
     setZipCode(zip);
-    console.log('zipCode: ', zipCode);
   }
 
-  console.log('weather: ', weather);
-  return (
-    <Layout>
-      <Header updateParentZip={updateZip} />
-      <Weather {...weather as WeatherEntry} />
-    </Layout>
-  );
+  if (Object.keys(weather).length === 0) {
+    return (
+      <Layout>
+        <Header updateParentZip={updateZip} /> <span></span>
+      </Layout>
+    )
+  } else {
+    return (
+      <Layout>
+        <Header updateParentZip={updateZip} />
+        <Weather {...weather as WeatherEntry} />
+      </Layout>
+    );
+  }
 }
 
 

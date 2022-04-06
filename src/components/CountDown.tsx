@@ -6,6 +6,13 @@ const StyledDiv = styled.div`
 `;
 
 export default function CountDown() {
+
+  // let timeLeft = 10;
+  // const handleCountdown = () => {
+
+  // }
+
+
   return (
     <StyledDiv>
       <h3>Refreshing In:</h3>
