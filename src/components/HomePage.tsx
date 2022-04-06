@@ -22,15 +22,20 @@ export default function HomePage() {
       humidity: response.main.humidity,
       description: response.weather[0].description
     });
+    console.log('formattedCurrentWeather1: ', formattedCurrentWeather.coordinates)
   }
 
   useEffect(() => {
-    Client.getForecast(formattedCurrentWeather.coordinates.lat, formattedCurrentWeather.coordinates.lon)
-    .then(result => {
-      console.log(result)
-      // setForecastWeather(result);
-    })
-  }, [])
+    console.log('formattedCurrentWeather2: ', formattedCurrentWeather.coordinates)
+    if (formattedCurrentWeather.coordinates !== undefined && formattedCurrentWeather.coordinates.lon !== undefined
+      && formattedCurrentWeather.coordinates.lat !== undefined) {
+      Client.getForecast(formattedCurrentWeather.coordinates.lat, formattedCurrentWeather.coordinates.lon)
+        .then(result => {
+          console.log(result)
+          // setForecastWeather(result);
+        })
+    }
+  }, [formattedCurrentWeather])
 
   useEffect(() => {
     if (zipCode) {
