@@ -17,6 +17,23 @@ export interface WeatherEntry {
     description: string;
   }[];
   wind: { speed: number };
+  coord: {
+    lat: number,
+    lon: number
+  }
+}
+
+export interface FormattedCurrentWeatherEntry {
+  coordinates: {
+    lat: number,
+    lon: number
+  },
+  temperature: number,
+  wind: number,
+  date: number,
+  city: string,
+  humidity: number,
+  description: string
 }
 
 // NOTE: API Docs can be found here: https://openweathermap.org/current
@@ -28,6 +45,12 @@ class Client {
       `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${key}`
     )
     return res.data as WeatherEntry;
+  }
+  async getForecast(lat: any, lon: any) {
+    const res = await axios.get(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`
+    )
+    return res.data;
   }
 }
 

@@ -2,7 +2,6 @@ import CountDown from "./CountDown";
 import { WeatherEntry } from "../api/client";
 
 export default function Weather({ clouds, dt, main, name, weather, wind }: WeatherEntry) {
-  // console.log('props in weather:', props);
   return (
     <div className="section card">
       <h2>Local Weather</h2>

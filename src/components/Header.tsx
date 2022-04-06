@@ -1,5 +1,3 @@
-// import Client from "../api/client"
-
 import React, { useState } from "react";
 
 interface Props {
@@ -8,20 +6,12 @@ interface Props {
 
 export default function Header({ updateParentZip }: Props) {
   const [zip, setZip] = useState(0)
-  // const [weather, setWeather] = useState({})
-  // const [isLoaded, setIsLoaded] = useState(false)
+
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     updateParentZip(zip)
   }
-
-  // useEffect(() => {
-  //   console.log('this is weather:', weather);
-  //   if (Object.keys(weather).length > 0 ) {
-  //     setIsLoaded(true);
-  //   }
-  // }, [weather])
 
   return (
     <div className="header">
