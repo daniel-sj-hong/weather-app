@@ -6,7 +6,7 @@ export default function Weather({ clouds, dt, main, name, weather, wind }: Weath
   return (
     <div className="section card">
       <h2>Local Weather</h2>
-      <p>In your zip code, the weather is:</p>
+      <p>In your zip code, the weather is: {main.temp}&deg;F</p>
       <table>
         <tbody>
           <tr>
@@ -19,12 +19,12 @@ export default function Weather({ clouds, dt, main, name, weather, wind }: Weath
           </tr>
           <tr>
             {/*Put other applicable "main" stuff in here*/}
-            <td>...</td>
-            <td>...</td>
+            <td>Temperature</td>
+            <td>{main.temp}&deg;F</td>
           </tr>
           <tr>
             <td>Wind</td>
-            <td>1.5</td>
+            <td>{wind.speed} mph</td>
           </tr>
         </tbody>
       </table>
