@@ -2,19 +2,42 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Layout from "./Layout";
 import Weather from "./Weather";
-import Client from "../api/client";
+import Client, { FormattedCurrentWeatherEntry } from "../api/client";
 import { WeatherEntry } from "../api/client";
+// import WeatherForecast from "./WeatherForecast";
 
 export default function HomePage() {
   const [zipCode, setZipCode] = useState(0)
-  const [weather, setWeather] = useState({})
+  const [currentWeather, setCurrentWeather] = useState({})
+  const [formattedCurrentWeather, setFormattedCurrentWeather] = useState({} as FormattedCurrentWeatherEntry)
+  const [forecastWeather, setForecastWeather] = useState({})
 
+  function reformatResult(response: WeatherEntry) {
+    setFormattedCurrentWeather({
+      coordinates: response.coord,
+      temperature: Math.round(response.main.temp),
+      wind: response.wind.speed,
+      date: response.dt,
+      city: response.name,
+      humidity: response.main.humidity,
+      description: response.weather[0].description
+    });
+  }
+
+  useEffect(() => {
+    Client.getForecast(formattedCurrentWeather.coordinates.lat, formattedCurrentWeather.coordinates.lon)
+    .then(result => {
+      console.log(result)
+      // setForecastWeather(result);
+    })
+  }, [])
 
   useEffect(() => {
     if (zipCode) {
       Client.getWeatherByZipCode(zipCode)
       .then(result => {
-        setWeather(result);
+        setCurrentWeather(result);
+        reformatResult(result);
       })
     }
   }, [zipCode])
@@ -23,7 +46,9 @@ export default function HomePage() {
     setZipCode(zip);
   }
 
-  if (Object.keys(weather).length === 0) {
+  console.log('weather: ', currentWeather);
+
+  if (Object.keys(currentWeather).length === 0) {
     return (
       <Layout>
         <Header updateParentZip={updateZip} /> <span></span>
@@ -33,7 +58,8 @@ export default function HomePage() {
     return (
       <Layout>
         <Header updateParentZip={updateZip} />
-        <Weather {...weather as WeatherEntry} />
+        <Weather {...currentWeather as WeatherEntry} />
+        {/* <WeatherForecast {...forecastWeather} /> */}
       </Layout>
     );
   }
