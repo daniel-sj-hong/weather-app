@@ -50,7 +50,7 @@ class Client {
     const res = await axios.get(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`
     )
-    return res.data;
+    return res.data as FormattedCurrentWeatherEntry;
   }
 }
 

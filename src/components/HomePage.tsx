@@ -1,118 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import Layout from "./Layout";
 import Weather from "./Weather";
-import Client, { FormattedCurrentWeatherEntry } from "../api/client";
-import { WeatherEntry } from "../api/client";
-// import WeatherForecast from "./WeatherForecast";
+import Client, { WeatherEntry, FormattedCurrentWeatherEntry } from "../api/client";
 
 export default function HomePage() {
   const [zipCode, setZipCode] = useState(0)
   const [currentWeather, setCurrentWeather] = useState({})
-  const [formattedCurrentWeather, setFormattedCurrentWeather] = useState({} as FormattedCurrentWeatherEntry)
   const [forecastWeather, setForecastWeather] = useState({})
 
-  function reformatResult(response: WeatherEntry) {
-    setFormattedCurrentWeather({
-      coordinates: response.coord,
-      temperature: Math.round(response.main.temp),
-      wind: response.wind.speed,
-      date: response.dt,
-      city: response.name,
-      humidity: response.main.humidity,
-      description: response.weather[0].description
-    });
-    console.log('formattedCurrentWeather1: ', formattedCurrentWeather.coordinates)
-  }
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault()
 
-  useEffect(() => {
-    console.log('formattedCurrentWeather2: ', formattedCurrentWeather.coordinates)
-    if (formattedCurrentWeather.coordinates !== undefined && formattedCurrentWeather.coordinates.lon !== undefined
-      && formattedCurrentWeather.coordinates.lat !== undefined) {
-      Client.getForecast(formattedCurrentWeather.coordinates.lat, formattedCurrentWeather.coordinates.lon)
-        .then(result => {
-          console.log(result)
-          // setForecastWeather(result);
-        })
-    }
-  }, [formattedCurrentWeather])
-
-  useEffect(() => {
     if (zipCode) {
-      Client.getWeatherByZipCode(zipCode)
-      .then(result => {
-        setCurrentWeather(result);
-        reformatResult(result);
+      Client.getWeatherByZipCode(zipCode).then(result => {
+        setCurrentWeather(result as WeatherEntry)
+        if (result.coord !== undefined && result.coord.lon !== undefined && result.coord.lat !== undefined) {
+          Client.getForecast(result.coord.lat, result.coord.lon).then(result => {
+            setForecastWeather(result as FormattedCurrentWeatherEntry)
+          })
+        }
       })
     }
-  }, [zipCode])
-
-  const updateZip = (zip: number) => {
-    setZipCode(zip);
   }
 
   console.log('weather: ', currentWeather);
+  console.log('forecast weather: ', forecastWeather);
 
   if (Object.keys(currentWeather).length === 0) {
     return (
       <Layout>
-        <Header updateParentZip={updateZip} /> <span></span>
+        <Header updateZip={setZipCode} handleSubmit={handleSubmit} /> <span></span>
       </Layout>
     )
   } else {
     return (
       <Layout>
-        <Header updateParentZip={updateZip} />
+        <Header updateZip={setZipCode} handleSubmit={handleSubmit} />
         <Weather {...currentWeather as WeatherEntry} />
-        {/* <WeatherForecast {...forecastWeather} /> */}
       </Layout>
     );
   }
 }
-
-
-// const EXAMPLE_ZIP_CODE = 37203;
-/* const EXAMPLE_WEATHER_RESPONSE =
-{
-  "base": "stations",
-  "clouds": {
-      "all": 90
-  },
-  "cod": 200,
-  "coord": {
-      "lat": 36.1504,
-      "lon": -86.7916
-  },
-  "dt": 1610367250,
-  "id": 0,
-  "main": {
-      "feels_like": 21.09,
-      "humidity": 74,
-      "pressure": 1026,
-      "temp": 29.73,
-      "temp_max": 30.2,
-      "temp_min": 28.99
-  },
-  "name": "Nashville",
-  "sys": {
-      "country": "US",
-      "id": 4609,
-      "sunrise": 1610369886,
-      "sunset": 1610405514,
-      "type": 1
-  },
-  "timezone": -21600,
-  "visibility": 10000,
-  "weather": [
-      {
-          "description": "overcast clouds",
-          "icon": "04n",
-          "id": 804,
-          "main": "Clouds"
-      }
-  ],
-  "wind": {
-      "deg": 10,
-      "speed": 6.91
-  }
-} */

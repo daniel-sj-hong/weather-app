@@ -13,8 +13,8 @@ export default function Weather({ clouds, dt, main, name, weather, wind }: Weath
             <td>{name}</td>
           </tr>
           <tr>
-            <td>Rain</td>
-            <td>light right</td>
+            <td>description</td>
+            <td>{weather[0].description}</td>
           </tr>
           <tr>
             {/*Put other applicable "main" stuff in here*/}
