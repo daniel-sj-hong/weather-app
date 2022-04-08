@@ -1,9 +1,10 @@
 interface Props {
+  zipCode: number
   updateZip: (zipCode: number) => void
   handleSubmit: (e: React.SyntheticEvent) => void
 }
 
-export default function Header({ updateZip, handleSubmit }: Props) {
+export default function Header({ zipCode, updateZip, handleSubmit }: Props) {
   return (
     <div className="header">
       <h1>Weather App</h1>
@@ -13,7 +14,7 @@ export default function Header({ updateZip, handleSubmit }: Props) {
           type="number"
           placeholder="ZIP Code"
           name="zip"
-          onChange={(e) => updateZip(parseInt(e.target.value))}
+          onChange={(e) => parseInt(e.target.value) !== zipCode && updateZip(parseInt(e.target.value))}
         />
         <div>
           <button type="submit">Search</button>
