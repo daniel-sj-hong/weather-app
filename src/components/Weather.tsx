@@ -1,7 +1,11 @@
 import CountDown from "./CountDown";
 import { WeatherEntry } from "../api/client";
 
-export default function Weather({ clouds, dt, main, name, weather, wind }: WeatherEntry) {
+interface WeatherEntryExtended extends WeatherEntry {
+  handleSubmit: (e: React.SyntheticEvent) => void
+}
+
+export default function Weather({ clouds, dt, main, name, weather, wind, handleSubmit }: WeatherEntryExtended) {
   return (
     <div className="section card">
       <h2>Local Weather</h2>
@@ -27,7 +31,7 @@ export default function Weather({ clouds, dt, main, name, weather, wind }: Weath
           </tr>
         </tbody>
       </table>
-      <CountDown />
+      <CountDown handleSubmit={handleSubmit} />
     </div>
   );
 }
