@@ -20,8 +20,52 @@ const StyledDiv = styled.div`
   .header {
     grid-area: header;
     text-align: center;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+    background: rgba(0, 176, 255, .7);
+    position: relative;
   }
+
+  .cloud {
+    position: absolute;
+    top: 90px;
+    left: 50px;
+    background: rgba(255, 255, 255);
+    width: 150px;
+    height: 50px;
+    border-radius: 150px;
+    box-shadow: 10px 10px rgba(0,0,0,0.2);
+    animation: move 3s infinite;
+  }
+
+  .cloud:after {
+    content: '';
+    background: rgba(255, 255, 255);
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    bottom: 5px;
+    left: 50px;
+}
+
+ .cloud:before {
+    content: '';
+    background: rgba(255, 255, 255);
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    border-radius: 50%;
+    top: -21px;
+    left: 20px;
+}
+
+@keyframes move {
+  0% {
+    transform: translatex(0);
+  }
+  50% {
+    transform: translatex(-40px);
+  }
+}
 
   .card {
     grid-area: weather;
@@ -89,10 +133,33 @@ const StyledDiv = styled.div`
   }
 
   .submit-button {
-    margin: 10px 0;
+    margin: 10px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #f7f6f6;
+    border-radius: 10px;
     border: none;
-    border-radius: 15px;
-    padding: 5px 15px;
+    width: 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+  }
+
+  .submit-button:hover{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: 8px 10px 12px;
+    background-position: right center;
+  }
+
+  .submit-button {
+    background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 51%, #2BC0E4 100%)
   }
 
   .row {
@@ -104,10 +171,11 @@ const StyledDiv = styled.div`
   }
 
   .weather-box {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     color: #fdf0f0;
     text-shadow: 2px 3px rgba(50, 50, 70, 0.5);
+    margin-right: 5px;
   }
 
   .today,
@@ -115,7 +183,47 @@ const StyledDiv = styled.div`
     padding-left: 10px;
   }
 
-  table {
+  .hidden {
+    display: none;
+  }
+
+  .transition {
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 0.33;
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .forecast-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    color: #fdf0f0;
+    text-shadow: 2px 3px rgba(50, 50, 70, 0.5);
+    margin-left: 5px;
+  }
+
+  .sun {
+    width: 35%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    right: -21px;
+  }
+
+  .white {
+    color: #fdf0f0;
   }
 `;
 

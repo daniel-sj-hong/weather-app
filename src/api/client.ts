@@ -37,7 +37,8 @@ export interface FormattedCurrentWeatherEntry {
 }
 
 // NOTE: API Docs can be found here: https://openweathermap.org/current
-const key = "55019652a29de8dae744a7a05b11b581";
+// const key = "55019652a29de8dae744a7a05b11b581"; Got locked out. Using my own key. Hopefully original key becomes unlocked tmr.
+const key = "e6028f3402d03c87f8daded950fc66db";
 
 class Client {
   async getWeatherByZipCode(zipCode: number) {
