@@ -9,18 +9,18 @@ export default function Header({ zipCode, updateZip, handleSubmit }: Props) {
     <div className="header">
       <h1>Weather App</h1>
       <p>Enter your zip code below to see your weather.</p>
-      <form className="zipSearch" typeof="submit" onSubmit={handleSubmit}>
+      <form typeof="submit" onSubmit={handleSubmit}>
         <input
           type="number"
           placeholder="ZIP Code"
           name="zip"
           onChange={(e) => parseInt(e.target.value) !== zipCode && updateZip(parseInt(e.target.value))}
+          className="search-bar"
         />
         <div>
-          <button type="submit">Search</button>
+          <button type="submit" className="submit-button">Search</button>
         </div>
       </form>
-
     </div>
   );
 }

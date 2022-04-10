@@ -26,7 +26,7 @@ export default function HomePage() {
     }
   }
 
-  console.log('weather: ', currentWeather);
+  console.log('currentWeather: ', currentWeather);
   console.log('forecast weather: ', forecastWeather);
 
   if (Object.keys(currentWeather).length === 0) {
