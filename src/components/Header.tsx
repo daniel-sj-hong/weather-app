@@ -7,8 +7,10 @@ interface Props {
 export default function Header({ zipCode, updateZip, handleSubmit }: Props) {
   return (
     <div className="header">
-      <h1>Weather App</h1>
-      <p>Enter your zip code below to see your weather.</p>
+      <div className="cloud"></div>
+      <img src="./images/day.svg" alt="sun" className="sun" />
+      <h1 className="white">Weather App</h1>
+      <p className="white">Enter a zip code below to see the weather.</p>
       <form typeof="submit" onSubmit={handleSubmit}>
         <input
           type="number"
