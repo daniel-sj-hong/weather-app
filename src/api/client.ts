@@ -30,13 +30,12 @@ export interface Forecast
 }
 
 // NOTE: API Docs can be found here: https://openweathermap.org/current
-// const key = "55019652a29de8dae744a7a05b11b581"; Got locked out. Using my own key. Hopefully original key becomes unlocked tmr.
-const key = "e6028f3402d03c87f8daded950fc66db";
+const key = "55019652a29de8dae744a7a05b11b581";
 
 class Client {
   async getWeatherByZipCode(zipCode: number) {
     const res = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${key}`
+      `http://api.openweathermfap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${key}`
     )
     return res.data as WeatherEntry;
   }
