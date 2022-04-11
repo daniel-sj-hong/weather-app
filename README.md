@@ -89,3 +89,15 @@ Open [http://localhost:9001](http://localhost:9001) to view it in the browser.
 
 <!-- added "set" and "&&" into to the start script because npm start wasn't working -->
 # react-homework-ternary
+
+
+## Changes
+- Created a button that holds a handleSubmit function. If the provided zip code is correct and the button is pressed, or the user presses 'enter', the function fires the API call and retrieves back the weather data as a response from the API.
+- Using props, I passed states of zipCode, setZipCode, and the handleSubmit from my HomePage component into my Header component as that's where the input element is residing
+
+
+## Error Handling
+- The first if statement in the catch of the HomePage component, is if our request to the API is bad.
+- The middle if statement is if the user input a invalid zip code or accidentally typed a typo
+- The last if statement is if something is wrong with the API (server).
+- I checked the errors codes by purposely giving the axios API call an invalid URL and setting break points in the Sources tab of the Inspector

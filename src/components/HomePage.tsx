@@ -3,32 +3,39 @@ import Header from "./Header";
 import Layout from "./Layout";
 import Weather from "./Weather";
 import Client, { WeatherEntry, Forecast } from "../api/client";
+
 // import Forecast from "./Forecast";
-// import Client, { WeatherEntry } from "../api/client";
 
 export default function HomePage() {
   const [zipCode, setZipCode] = useState(0)
   const [weather, setWeather] = useState({})
   const [forecast, setForecast] = useState({})
+  const [error, setError] = useState({isFailed: false, message:""})
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     if (Object.keys(e).length > 0) {
       e.preventDefault()
     }
+    setError({ isFailed: false, message: ''});
     if (zipCode) {
       Client.getWeatherByZipCode(zipCode)
       .then(result => {
-        console.log('result: ', result);
-        let data = result as WeatherEntry;
+        setWeather(result as WeatherEntry);
         if (result.coord !== undefined && result.coord.lon !== undefined && result.coord.lat !== undefined) {
           Client.getForecast(result.coord.lat, result.coord.lon).then(forecastResult => {
             setForecast(forecastResult as Forecast)
-            setWeather(data as WeatherEntry);
           })
         }
       })
       .catch(err => {
-        console.log(err.message);
+        console.log(err);
+        if(err === undefined || err.response === undefined) {
+          setError({ isFailed: true, message: 'Server error.' });
+        } else if (err.response.status === 404) {
+          setError({isFailed: true, message: 'Invalid zip code'});
+        } else if (err.response.status === 401 || err.response.status === 429 || err.response.status > 500) {
+          setError({isFailed: true, message: 'Server error.'})
+        }
       })
     }
   }
@@ -36,7 +43,14 @@ export default function HomePage() {
   console.log('weather: ', weather);
   console.log('forecast: ', forecast);
 
-  if (Object.keys(weather).length === 0) {
+  if (error.isFailed) {
+    return (
+      <Layout>
+        <Header zipCode={zipCode} updateZip={setZipCode} handleSubmit={handleSubmit} />
+        <p>{error.message}</p>
+      </Layout>
+    )
+  } else if (Object.keys(weather).length === 0) {
     return (
       <Layout>
         <Header zipCode={zipCode} updateZip={setZipCode} handleSubmit={handleSubmit} />
