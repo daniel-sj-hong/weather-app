@@ -2,102 +2,21 @@
 
 Homework exercise to showcase front end skills.
 
-![screenshot](./public/weather-screenshot.png)
-
-## The Goal
-
-We already have a basic structure in place: JSX, CSS, and an api client to get current weather data. Now bring it to life using React! Create a weather app that does the following:
-
-- Displays the current weather for a given zip code using the **OpenWeatherMap** API [https://openweathermap.org/current](https://openweathermap.org/current)
-- Updates the weather data every 10 seconds (with a ticking countdown clock until the next refresh)
-
-Note that the existing code is an aid, but don't let it constrain you. Feel free to add new components, remove existing ones, and restructure things as you see fit. Also feel free to change any and all CSS to acheive the look you want and add any functionality that you deem valuable.
-
-- From a TECHNICAL perspective, we're looking for a effective, efficient, easy-to-reason-about app that we'd feel comfortable putting into production.
-- From a PRODUCT perspective, we want the app to be intuitive, attractive and resillient to errors of any kind.
-
-## The Weather Data
-
-Note that there is some rate limiting and account monitoring, so if you accidentally call the API excessively (for example, in a loop) you may get blocked / banned and require a new account. Reach out if this happens, and we'll unblock you.
-
-Example API Response Body:
-
-```
-{
-    "base": "stations",
-    "clouds": {
-        "all": 90
-    },
-    "cod": 200,
-    "coord": {
-        "lat": 36.1504,
-        "lon": -86.7916
-    },
-    "dt": 1610367250,
-    "id": 0,
-    "main": {
-        "feels_like": 21.09,
-        "humidity": 74,
-        "pressure": 1026,
-        "temp": 29.73,
-        "temp_max": 30.2,
-        "temp_min": 28.99
-    },
-    "name": "Nashville",
-    "sys": {
-        "country": "US",
-        "id": 4609,
-        "sunrise": 1610369886,
-        "sunset": 1610405514,
-        "type": 1
-    },
-    "timezone": -21600,
-    "visibility": 10000,
-    "weather": [
-        {
-            "description": "overcast clouds",
-            "icon": "04n",
-            "id": 804,
-            "main": "Clouds"
-        }
-    ],
-    "wind": {
-        "deg": 10,
-        "speed": 6.91
-    }
-}
-```
-
-## How to Submit
-
-- Replace this README with one that includes:
-  - a screenshot of the final product
-  - a brief written description of your changes
-  - instructions to run locally
-  - bonus points for also providing instructions to run a dockerized production build
-- Host a Git repo on either Github or Gitlab for the project. This should be a private repo to avoid exposing the API key.
-- Give your reviewer at Ternary access to the repo (email them to ask for their applicable username when ready).
-
-## Run the app locally
-
-`npm install`
-
-`npm start`
-
-Runs the app in the development mode.
-Open [http://localhost:9001](http://localhost:9001) to view it in the browser.
-
-<!-- added "set" and "&&" into to the start script because npm start wasn't working -->
+![screenshot](./public/images/gif1.gif)
 # react-homework-ternary
-
-
 ## Changes
 - Created a button that holds a handleSubmit function. If the provided zip code is correct and the button is pressed, or the user presses 'enter', the function fires the API call and retrieves back the weather data as a response from the API.
-- Using props, I passed states of zipCode, setZipCode, and the handleSubmit from my HomePage component into my Header component as that's where the input element is residing
-
+- Using props, I passed states of zipCode, setZipCode, and the handleSubmit from my HomePage component into my Header component as that's where the input element is residing.
+- Once the user enters in a valid zip code, it get sent back to the HomePage component and we have all the data we need to populate the browser by passing the data down into the CurrentWeather and Forecast components.
+- The timer in the CountDown component uses state to set the counter initially to 10 and subtract by 1 every second. Once the counter hits 0, setCounter resets the counter to 10 and calls the handleSubmit function, that was passed in via props, which holds the API calls for the current weather data and forecast data.
 
 ## Error Handling
 - The first if statement in the catch of the HomePage component, is if our request to the API is bad.
 - The middle if statement is if the user input a invalid zip code or accidentally typed a typo
 - The last if statement is if something is wrong with the API (server).
 - I checked the errors codes by purposely giving the axios API call an invalid URL and setting break points in the Sources tab of the Inspector
+
+## Instructions to run locally
+- git clone the SSH key
+- ```npm install```
+- ```npm start```
