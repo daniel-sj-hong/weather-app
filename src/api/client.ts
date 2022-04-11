@@ -21,12 +21,17 @@ export interface WeatherEntry {
     lat: number,
     lon: number
   },
-  forecast: Forecast
 }
 
-export interface Forecast
-{
-  lat: number
+export interface ForecastEntry {
+  temp: {
+    max: number;
+    min: number;
+  },
+  weather: {
+    icon: string;
+  }[],
+  dt: number
 }
 
 // NOTE: API Docs can be found here: https://openweathermap.org/current
@@ -35,7 +40,7 @@ const key = "55019652a29de8dae744a7a05b11b581";
 class Client {
   async getWeatherByZipCode(zipCode: number) {
     const res = await axios.get(
-      `http://api.openweathermfap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${key}`
+      `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${key}`
     )
     return res.data as WeatherEntry;
   }
@@ -43,7 +48,7 @@ class Client {
     const res = await axios.get(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`
     )
-    return res.data as Forecast;
+    return res.data as ForecastEntry;
   }
 }
 
