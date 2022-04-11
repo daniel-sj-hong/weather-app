@@ -5,6 +5,7 @@ interface Props {
 }
 
 export default function Header({ zipCode, updateZip, handleSubmit }: Props) {
+
   return (
     <div className="header">
       <div className="cloud"></div>
@@ -15,9 +16,9 @@ export default function Header({ zipCode, updateZip, handleSubmit }: Props) {
         <input
           type="number"
           placeholder="ZIP Code"
-          name="zip"
           onChange={(e) => parseInt(e.target.value) !== zipCode && updateZip(parseInt(e.target.value))}
           className="search-bar"
+          required
         />
         <div>
           <button type="submit" className="submit-button">Search</button>

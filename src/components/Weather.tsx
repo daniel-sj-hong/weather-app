@@ -1,11 +1,15 @@
 // import CountDown from "./CountDown";
-import { WeatherEntry } from "../api/client";
+import { WeatherEntry, Forecast } from "../api/client";
+// import Forecast from "./Forecast"
 
 interface WeatherEntryExtended extends WeatherEntry {
-  handleSubmit: (e: React.SyntheticEvent) => void
+  handleSubmit: (e: React.SyntheticEvent) => void,
+  forecast: Forecast
 }
 
-export default function Weather({ main, name, weather, wind, handleSubmit }: WeatherEntryExtended) {
+
+
+export default function Weather({ main, name, weather, wind, forecast, handleSubmit }: WeatherEntryExtended) {
   return (
     <div className="section card">
       <img src={`./images/${(Math.round(main.temp) >= 80) ? 'hot' : (Math.round(main.temp) >= 60) ? 'perfect' : 'ice'}.jpg`} alt="ice" />
@@ -36,11 +40,7 @@ export default function Weather({ main, name, weather, wind, handleSubmit }: Wea
           </table>
         </div>
         <div className="col-half forecast-box">
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
+          <p>{forecast}</p>
         </div>
       </div>
       {/* <CountDown handleSubmit={handleSubmit} /> */}
