@@ -225,6 +225,45 @@ const StyledDiv = styled.div`
   .white {
     color: #fdf0f0;
   }
+
+  .text-center {
+    text-align: center;
+    position: absolute;
+    top: 17rem;
+    left: 22rem;
+    font-weight: 700;
+  }
+
+  .lds-dual-ring {
+    position: absolute;
+    top: 20rem;
+    left: 26rem;
+    width: 80px;
+    height: 80px;
+  }
+
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #dfc;
+    border-color: #05ff24 transparent #ed5555 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 `;
 
 

@@ -26,7 +26,7 @@ export default function CountDown({handleSubmit}: CountDownProps) {
 
   return (
     <StyledDiv>
-      <h3 className="blah">Refreshing In:</h3>
+      <h3>Refreshing In:</h3>
       <p>{counter} seconds</p>
     </StyledDiv>
   );

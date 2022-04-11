@@ -20,20 +20,13 @@ export interface WeatherEntry {
   coord: {
     lat: number,
     lon: number
-  }
+  },
+  forecast: Forecast
 }
 
-export interface FormattedCurrentWeatherEntry {
-  coordinates: {
-    lat: number,
-    lon: number
-  },
-  temperature: number,
-  wind: number,
-  date: number,
-  city: string,
-  humidity: number,
-  description: string
+export interface Forecast
+{
+  lat: number
 }
 
 // NOTE: API Docs can be found here: https://openweathermap.org/current
@@ -51,7 +44,7 @@ class Client {
     const res = await axios.get(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`
     )
-    return res.data as FormattedCurrentWeatherEntry;
+    return res.data as Forecast;
   }
 }
 
