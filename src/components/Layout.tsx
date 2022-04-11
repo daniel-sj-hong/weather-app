@@ -93,10 +93,6 @@ const StyledDiv = styled.div`
     box-sizing: border-box
   }
 
-  blockquote {
-    font-style: italic;
-  }
-
   td {
     padding: 0.5rem;
   }
@@ -183,11 +179,6 @@ const StyledDiv = styled.div`
   .local {
     padding-left: 10px;
   }
-
-  .hidden {
-    display: none;
-  }
-
   .transition {
     animation: 1s ease-out 0s 1 slideInFromLeft;
   }
@@ -215,7 +206,6 @@ const StyledDiv = styled.div`
     margin-left: 5px;
     height: 15.5rem
   }
-
 
   .sun {
     width: 35%;
@@ -277,10 +267,6 @@ const StyledDiv = styled.div`
     justify-content: space-evenly
   }
 
-  .height-80 {
-    height: 20rem;
-  }
-
   .overflow {
     overflow: scroll;
   }
@@ -288,14 +274,6 @@ const StyledDiv = styled.div`
   .overflow::-webkit-scrollbar {
     height: 0;
     width: 0;
-  }
-
-  .justify-center {
-    justify-content: center;
-  }
-
-  .align-center {
-    text-align: center
   }
 
   .icons {
