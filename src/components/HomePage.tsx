@@ -1,15 +1,16 @@
 import { useState } from "react";
 import Header from "./Header";
 import Layout from "./Layout";
-import Weather from "./Weather";
-import Client, { WeatherEntry, Forecast } from "../api/client";
+import CurrentWeather from "./CurrentWeather";
+import Client, { WeatherEntry, ForecastEntry } from "../api/client";
+import CountDown from "./CountDown";
+import Forecast from "./Forecast";
 
-// import Forecast from "./Forecast";
 
 export default function HomePage() {
   const [zipCode, setZipCode] = useState(0)
-  const [weather, setWeather] = useState({})
-  const [forecast, setForecast] = useState({})
+  const [weather, setWeather]: any = useState({})
+  const [forecast, setForecast]: any = useState({})
   const [error, setError] = useState({isFailed: false, message:""})
 
   const handleSubmit = (e: React.SyntheticEvent) => {
@@ -23,7 +24,7 @@ export default function HomePage() {
         setWeather(result as WeatherEntry);
         if (result.coord !== undefined && result.coord.lon !== undefined && result.coord.lat !== undefined) {
           Client.getForecast(result.coord.lat, result.coord.lon).then(forecastResult => {
-            setForecast(forecastResult as Forecast)
+            setForecast(forecastResult as ForecastEntry)
           })
         }
       })
@@ -43,30 +44,25 @@ export default function HomePage() {
   console.log('weather: ', weather);
   console.log('forecast: ', forecast);
 
-  if (error.isFailed) {
-    return (
-      <Layout>
-        <Header zipCode={zipCode} updateZip={setZipCode} handleSubmit={handleSubmit} />
-        <p>{error.message}</p>
-      </Layout>
-    )
-  } else if (Object.keys(weather).length === 0) {
-    return (
-      <Layout>
-        <Header zipCode={zipCode} updateZip={setZipCode} handleSubmit={handleSubmit} />
-        <p className="text-center">Waiting for a valid zip code...</p>
-        <div className="lds-dual-ring"></div>
-      </Layout>
-    )
-  } else {
-    return (
-      <Layout>
-        <Header zipCode={zipCode} updateZip={setZipCode} handleSubmit={handleSubmit} />
-        <Weather {...weather as WeatherEntry} handleSubmit={handleSubmit} />
-
-        {/* <Forecast /> */}
-
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      <Header zipCode={zipCode} updateZip={setZipCode} handleSubmit={handleSubmit} />
+      {error.isFailed && <p>{error.message}</p>}
+      {Object.keys(weather).length === 0 ?
+        <>
+          <p className="text-positioning">Waiting for a valid zip code...</p>
+          <div className="lds-dual-ring"></div>
+        </>
+        :
+        <div className="section card">
+          <img src={`./images/${(Math.round(weather.main.temp) >= 80) ? 'hot' : (Math.round(weather.main.temp) >= 60) ? 'perfect' : 'ice'}.jpg`} alt="weather" className="background"/>
+          <div className="row">
+            <CurrentWeather {...weather as WeatherEntry} />
+            {forecast.daily && <Forecast daily={forecast.daily} />}
+          </div>
+            <CountDown handleSubmit={handleSubmit} />
+        </div>
+      }
+    </Layout>
+  )
 }

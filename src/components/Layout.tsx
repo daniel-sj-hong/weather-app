@@ -78,7 +78,7 @@ const StyledDiv = styled.div`
     position: relative;
   }
 
-  img {
+  .background {
     width: 100%;
     height: 100%;
     object-fit: fill;
@@ -164,6 +164,7 @@ const StyledDiv = styled.div`
 
   .row {
     display: flex;
+    align-items: start;
   }
 
   .col-half {
@@ -212,7 +213,9 @@ const StyledDiv = styled.div`
     color: #fdf0f0;
     text-shadow: 2px 3px rgba(50, 50, 70, 0.5);
     margin-left: 5px;
+    height: 15.5rem
   }
+
 
   .sun {
     width: 35%;
@@ -226,7 +229,7 @@ const StyledDiv = styled.div`
     color: #fdf0f0;
   }
 
-  .text-center {
+  .text-positioning {
     text-align: center;
     position: absolute;
     top: 17rem;
@@ -264,6 +267,40 @@ const StyledDiv = styled.div`
     }
   }
 
+  ul {
+    list-style: none;
+  }
+
+  .width-90 {
+    width: 90%;
+    margin: auto;
+    justify-content: space-evenly
+  }
+
+  .height-80 {
+    height: 20rem;
+  }
+
+  .overflow {
+    overflow: scroll;
+  }
+
+  .overflow::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
+
+  .align-center {
+    text-align: center
+  }
+
+  .icons {
+    height: 3rem;
+  }
 `;
 
 
