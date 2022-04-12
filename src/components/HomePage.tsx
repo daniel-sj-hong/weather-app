@@ -41,9 +41,6 @@ export default function HomePage() {
     }
   }
 
-  console.log('weather: ', weather);
-  console.log('forecast: ', forecast);
-
   return (
     <Layout>
       <Header zipCode={zipCode} updateZip={setZipCode} handleSubmit={handleSubmit} />
