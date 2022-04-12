@@ -2,7 +2,7 @@
 
 Homework exercise to showcase front end skills.
 
-![screenshot](./public/images/gif1.gif)
+![Animation](https://user-images.githubusercontent.com/80491609/162902167-1363869f-93b7-42a1-8d10-a8c7943c9160.gif)
 # react-homework-ternary
 ## Changes
 - Created a button that holds a handleSubmit function. If the provided zip code is correct and the button is pressed, or the user presses 'enter', the function fires the API calls and retrieves back the weather data as a response from the API. Using the first API call, I'm able to get a latitude and longitude that I'm able to use for the second API call.
