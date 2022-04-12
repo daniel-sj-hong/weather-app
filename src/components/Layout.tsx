@@ -179,8 +179,28 @@ const StyledDiv = styled.div`
   .local {
     padding-left: 10px;
   }
+
   .transition {
     animation: 1s ease-out 0s 1 slideInFromLeft;
+  }
+
+  .transition-2 {
+    animation: 1s ease-out 0s 1 slideInFromRight:
+  }
+
+  @keyframes slideInFromRIght {
+    0% {
+      transform: translateX(50%);
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 0.33;
+    }
+
+    100% {
+      transform: translateX(0);
+    }
   }
 
   @keyframes slideInFromLeft {

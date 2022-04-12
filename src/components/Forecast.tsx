@@ -17,7 +17,6 @@ interface Props {
 }
 
 export default function Forecast({ daily }: Props) {
-  console.log('daily: ', daily);
 
   const day = (dt: number) => {
     let date = new Date(dt * 1000);
@@ -48,12 +47,13 @@ export default function Forecast({ daily }: Props) {
   };
 
   return (
-    <div className="col-half forecast-box overflow">
+    <div className="col-half forecast-box overflow transition-2">
+      <h2 className="local">Weekly Forecast</h2>
       {daily.map(forecast =>
         <div key={forecast.dt} className="width-90 row">
           <p>{day(forecast.dt)}</p>
-          <p>High: {forecast.temp.max}</p>
-          <p>Low: {forecast.temp.min}</p>
+          <p>High: {Math.round(forecast.temp.max)}&deg;F</p>
+          <p>Low: {Math.round(forecast.temp.min)}&deg;F</p>
           <img src={iconMapping[forecast.weather[0].icon]} alt="icon" className='icons' />
         </div>
       )}
