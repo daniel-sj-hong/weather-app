@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// NOTE: This includes a subset of the full response. Feel free to add more keys that you find valuable
 export interface WeatherEntry {
   clouds: { all: number };
   dt: number;
@@ -34,7 +33,6 @@ export interface ForecastEntry {
   dt: number
 }
 
-// NOTE: API Docs can be found here: https://openweathermap.org/current
 const key = "55019652a29de8dae744a7a05b11b581";
 
 class Client {
