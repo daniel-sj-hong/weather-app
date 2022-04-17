@@ -37,7 +37,7 @@ Weather app to showcase front end skills.
 
 ## Future Features
 - Make app mobile reponsive.
-- Geolocation. By asking for permission for user location, the app will auto generate the weather and forecast for user's location
+- Geolocation. By asking for permission for user location, the app will auto generate the weather and forecast for user's location.
 - Fahrenheit to celsius switcher.
 - Deployment. 
 
