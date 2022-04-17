@@ -48,6 +48,12 @@ class Client {
     )
     return res.data as ForecastEntry;
   }
+  async getWeatherByCity(city: string) {
+    const res = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
+    )
+    return res.data as WeatherEntry;
+  }
 }
 
 export default new Client();
