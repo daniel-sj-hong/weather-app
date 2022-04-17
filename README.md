@@ -12,6 +12,7 @@ Weather app to showcase front end skills.
 - Using props, I passed a state of zipCode and functions setZipCode & handleSubmit from my HomePage component into my Header component as that's where the input element is residing.
 - Once the user enters in a valid zip code, data gets sent back to the HomePage component and we have all the data we need to populate the browser by passing the data down into the CurrentWeather and Forecast components.
 - The timer in the CountDown component uses state to set the counter initially to 10 and subtract by 1 every second. Once the counter hits 0, setCounter resets the counter to 10 and calls the handleSubmit function, that was passed in via props, which holds the API calls for the current weather data and forecast data.
+- Using a ternary, the background will switch depending upon how hot the weather is. If it's over 80, the background will show a dry desert. If above 60, it will show California palm trees. If it's below 60, it will show a snowy background.
 
 ## Error Handling
 - The first if statement in the catch of the HomePage component, is if our request to the API is bad.
