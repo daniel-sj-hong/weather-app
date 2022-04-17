@@ -1,4 +1,6 @@
+import 'dotenv/config'
 import axios from "axios";
+const key = process.env.REACT_APP_API_KEY;
 
 export interface WeatherEntry {
   clouds: { all: number };
@@ -32,9 +34,6 @@ export interface ForecastEntry {
   }[],
   dt: number
 }
-
-const key = "55019652a29de8dae744a7a05b11b581";
-
 class Client {
   async getWeatherByZipCode(zipCode: number) {
     const res = await axios.get(
