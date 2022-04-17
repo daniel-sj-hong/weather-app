@@ -17,7 +17,6 @@ export default function CurrentWeather({ main, name, weather, wind }: WeatherEnt
                 <td>{weather[0].description}</td>
               </tr>
               <tr>
-                {/*Put other applicable "main" stuff in here*/}
                 <td>Temperature:</td>
                 <td>{Math.round(main.temp)}&deg;F</td>
               </tr>
