@@ -2,7 +2,8 @@
 
 Weather app to showcase front end skills.
 
-![Animation](https://user-images.githubusercontent.com/80491609/162902167-1363869f-93b7-42a1-8d10-a8c7943c9160.gif)
+![Animation](https://user-images.githubusercontent.com/80491609/163731781-e053d247-308e-4c5c-b701-71ed9f9f97dc.gif)
+
 
 ## Main Functionality
 - A user can input a zip code to see both the local weather and future forecast for that selected zip code.
