@@ -36,7 +36,7 @@ Weather app to showcase front end skills.
 - User can search for the weather and forecast through a city search rather than zip code.
 
 ## Future Features
-- Make app mobile reponsive.
+- Make app mobile responsive.
 - Geolocation. By asking for permission for user location, the app will auto generate the weather and forecast for user's location.
 - Fahrenheit to celsius switcher.
 - Deployment. 
